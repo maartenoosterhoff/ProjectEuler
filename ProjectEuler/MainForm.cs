@@ -27,7 +27,9 @@ namespace ProjectEuler {
                 .Where(t => t.BaseType == typeof(ProblemSolverBase));
             var solvers = solverTypes
                 .Select(t => Activator.CreateInstance(t))
-                .Cast<ProblemSolverBase>();
+                .Cast<ProblemSolverBase>()
+                .OrderBy(p => p.ProblemNumber)
+                .ToList();
             problems.Add(new ProblemInfo() { Id = 0, Description = "Please choose a problem to solve..." });
             problems.AddRange(solvers.Select(x => new ProblemInfo() { Id = x.ProblemNumber, Description = string.Format("Problem {0}", x.ProblemNumber), Solver = x }));
             _problems = problems;
