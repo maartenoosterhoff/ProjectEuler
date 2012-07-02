@@ -33,6 +33,7 @@
             this.txtSolution.Location = new System.Drawing.Point(0, 24);
             this.txtSolution.Multiline = true;
             this.txtSolution.Name = "txtSolution";
+            this.txtSolution.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtSolution.Size = new System.Drawing.Size(654, 485);
             this.txtSolution.TabIndex = 0;
             // 
