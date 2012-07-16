@@ -7,7 +7,11 @@ namespace ProjectEuler.Problems {
     class ProblemSolver011 : ProblemSolverBase {
         protected override string GetSolution() {
             LoadData();
+
             return "Not solved.";
+            string solution = "Coordinaties: " + string.Join(", ", MaxCoor.Select(c => string.Format("({0}, {1})", c.X, c.Y)).ToArray()) + Environment.NewLine;
+            solution += string.Format("Product of values: {0}", Max);
+            return solution;
         }
 
         int[,] _data;
@@ -54,14 +58,32 @@ namespace ProjectEuler.Problems {
                 for (int y = 0; y < length; y++) {
                     Coordinate firstCoordinate = new Coordinate() { X = x, Y = y };
                     coordinates.Push(firstCoordinate);
-                    //Fill(firstCoordinate, coordinates, 4);
+                    Fill(firstCoordinate, coordinates, 1, 0);
+                    Fill(firstCoordinate, coordinates, 0, 1);
+                    Fill(firstCoordinate, coordinates, 1, 1);
                     coordinates.Pop();
                 }
             }
             Console.WriteLine(Max);
-            Console.WriteLine(string.Join(" + ", MaxCoor.Select(c => string.Format("{0},{1}", c.X, c.Y)).ToArray()));
+            Console.WriteLine(string.Join(", ", MaxCoor.Select(c => string.Format("({0}, {1})", c.X, c.Y)).ToArray()));
             Console.WriteLine(string.Join(" + ", MaxCoor.Select(c => _data[c.X, c.Y].ToString()).ToArray()));
         }
+
+        private void Fill(Coordinate lastCoordinate, Stack<Coordinate> coordinates, int deltaRight, int deltaDown) {
+            if (coordinates.Count == 4) {
+                CheckMax(coordinates);
+            } else {
+                int x = lastCoordinate.X;
+                int y = lastCoordinate.Y;
+                Coordinate newC = new Coordinate() { X = x + deltaRight, Y = y + deltaDown };
+                if (newC.IsValid) {// && !coordinates.Contains(newC)) {
+                    coordinates.Push(newC);
+                    Fill(newC, coordinates, deltaRight, deltaDown);
+                    coordinates.Pop();
+                }
+            }
+        }
+
 
 
         private void CheckMax(Stack<Coordinate> coordinates) {
@@ -71,7 +93,7 @@ namespace ProjectEuler.Problems {
             if (max > Max) {
                 Max = max;
                 MaxCoor.Clear();
-                MaxCoor.AddRange(coordinates);
+                MaxCoor.AddRange(coordinates.Reverse());
             }
         }
 
