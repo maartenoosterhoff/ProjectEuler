@@ -8,7 +8,7 @@ namespace ProjectEuler.Problems {
         protected override string GetSolution() {
             LoadData();
 
-            return "Not solved.";
+            //return "Not solved.";
             string solution = "Coordinaties: " + string.Join(", ", MaxCoor.Select(c => string.Format("({0}, {1})", c.X, c.Y)).ToArray()) + Environment.NewLine;
             solution += string.Format("Product of values: {0}", Max);
             return solution;
