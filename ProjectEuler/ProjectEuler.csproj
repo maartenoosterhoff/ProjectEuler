@@ -52,6 +52,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Problems\ProblemSolver006.cs" />
     <Compile Include="Problems\ProblemSolver004.cs" />
     <Compile Include="Problems\ProblemSolver071.cs" />
     <Compile Include="Problems\ProblemSolver030.cs" />
