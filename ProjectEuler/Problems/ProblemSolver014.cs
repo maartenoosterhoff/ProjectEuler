@@ -2,35 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace ProjectEuler.Problems {
     class ProblemSolver014 : ProblemSolverBase {
         protected override string GetSolution() {
-            var solution = Enumerable.Range(1, 1000000).Select(x => GetCollatz(x)).OrderByDescending(x => x).FirstOrDefault();
-
-            return _collatz.FirstOrDefault(x => x == solution).ToString();
-        }
-
-        private int[] _collatz = new int[1000000];
-
-        private int GetCollatz(int start) {
-            if (start > _collatz.Length - 1) {
-                // we have to increase the array
-                int[] newCollatz = new int[_collatz.Length * 2];
-                Array.Copy(_collatz, newCollatz, _collatz.Length);
-                _collatz = newCollatz;
+            long valueWithMax = -1;
+            long max = -1;
+            for (long v = 1; v < 1000000; v++) {
+                var value = v;
+                var counter = 1;
+                while (value != 1) {
+                    if (value % 2 == 0) {
+                        value = value / 2;
+                    } else {
+                        value = 3 * value + 1;
+                    }
+                    counter++;
+                }
+                if (counter > max) {
+                    valueWithMax = v;
+                    max = counter;
+                }
             }
-
-            if (_collatz[start] == 0) {
-                if (start == 1)
-                    _collatz[start] = 1;
-                else
-                    if (start % 2 == 0)
-                        _collatz[start] = GetCollatz(start / 2) + 1;
-                    else
-                        _collatz[start] = GetCollatz(3 * start + 1) + 1;
-            }
-            return _collatz[start];
+            return valueWithMax.ToString();
         }
 
         protected override string GetProblemDescription() {
