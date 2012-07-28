@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +53,7 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Problems\ProblemSolver013.cs" />
     <Compile Include="Problems\ProblemSolver014.cs" />
     <Compile Include="Problems\ProblemSolver012.cs" />
     <Compile Include="Problems\ProblemSolver010.cs" />
