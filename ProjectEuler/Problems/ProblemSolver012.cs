@@ -6,9 +6,8 @@ using System.Text;
 namespace ProjectEuler.Problems {
     class ProblemSolver012 : ProblemSolverBase {
         protected override string GetSolution() {
-            return "Not solved yet.";
             var solution = TriangleNumberSequence()
-                .Where(t => FactorsOf(t).Count() >= 500)
+                .Where(t => FactorsOf(t) >= 500)
                 .FirstOrDefault();
 
             return solution.ToString();
@@ -24,13 +23,17 @@ namespace ProjectEuler.Problems {
             }
         }
 
-        private static IEnumerable<int> FactorsOf(int value) {
-            int halve = value / 2;
-            for (int i = 1; i <= halve; i++) {
-                if (value % i == 0)
-                    yield return i;
+        private static int FactorsOf(int value) {
+            List<int> factors = new List<int>();
+
+            int edge = (int)Math.Sqrt(value);
+            for (int i = 1; i <= edge; i++) {
+                if (value % i == 0) {
+                    factors.Add(i);
+                    factors.Add(value / i);
+                }
             }
-            yield break;
+            return factors.Distinct().Count();
         }
 
         protected override string GetProblemDescription() {
