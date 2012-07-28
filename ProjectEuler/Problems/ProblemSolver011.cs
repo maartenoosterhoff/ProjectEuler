@@ -7,8 +7,6 @@ namespace ProjectEuler.Problems {
     class ProblemSolver011 : ProblemSolverBase {
         protected override string GetSolution() {
             LoadData();
-
-            //return "Not solved.";
             string solution = "Coordinaties: " + string.Join(", ", MaxCoor.Select(c => string.Format("({0}, {1})", c.X, c.Y)).ToArray()) + Environment.NewLine;
             solution += string.Format("Product of values: {0}", Max);
             return solution;
@@ -61,6 +59,7 @@ namespace ProjectEuler.Problems {
                     Fill(firstCoordinate, coordinates, 1, 0);
                     Fill(firstCoordinate, coordinates, 0, 1);
                     Fill(firstCoordinate, coordinates, 1, 1);
+                    Fill(firstCoordinate, coordinates, -1, 1);
                     coordinates.Pop();
                 }
             }
