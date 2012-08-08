@@ -102,5 +102,22 @@ namespace ProjectEuler.Problems {
         }
 
         #endregion
+        #region HCF - Highest common factor / GCD
+
+        public static int GCD(int a, int b) {
+            while (a != 0 && b != 0) {
+                if (a > b)
+                    a %= b;
+                else
+                    b %= a;
+            }
+
+            if (a == 0)
+                return b;
+            else
+                return a;
+        }
+
+        #endregion
     }
 }
