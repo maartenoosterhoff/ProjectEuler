@@ -21,5 +21,11 @@ Find the sum of all the primes below two million.";
         public override int ProblemNumber {
             get { return 10; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

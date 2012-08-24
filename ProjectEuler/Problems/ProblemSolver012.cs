@@ -58,5 +58,11 @@ What is the value of the first triangle number to have over five hundred divisor
         public override int ProblemNumber {
             get { return 12; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

@@ -46,5 +46,11 @@ What is the smallest positive number that is evenly divisible by all of the numb
         public override int ProblemNumber {
             get { return 5; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

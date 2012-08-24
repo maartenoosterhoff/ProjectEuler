@@ -31,5 +31,11 @@ Find the product abc.";
         public override int ProblemNumber {
             get { return 9; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

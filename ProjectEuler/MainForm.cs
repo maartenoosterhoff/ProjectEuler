@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ProjectEuler.Problems;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace ProjectEuler {
     public partial class MainForm : Form {
@@ -31,7 +32,7 @@ namespace ProjectEuler {
                 .OrderBy(p => p.ProblemNumber)
                 .ToList();
             problems.Add(new ProblemInfo() { Id = 0, Description = "Please choose a problem to solve..." });
-            problems.AddRange(solvers.Select(x => new ProblemInfo() { Id = x.ProblemNumber, Description = string.Format("Problem {0}", x.ProblemNumber), Solver = x }));
+            problems.AddRange(solvers.Select(x => new ProblemInfo() { Id = x.ProblemNumber, Description = x.ProblemTitle, Solver = x }));
             _problems = problems;
 
             cmbProblems.DataSource = problems;
@@ -48,8 +49,18 @@ namespace ProjectEuler {
             if (cmbProblems.SelectedItem != null) {
                 var problemInfo = cmbProblems.SelectedItem as ProblemInfo;
                 if (problemInfo != null && problemInfo.Id > 0) {
-                    txtSolution.Text = problemInfo.Solver.Solve();
-                    txtSolution.SelectionStart = txtSolution.Text.Length;
+                    txtSolution.Text = "WORKING...";
+                    txtSolution.SelectionStart = 0;
+                    cmbProblems.Enabled = false;
+                    new Task(() => {
+                        string text = problemInfo.Solver.Solve();
+                        Action a = () => {
+                            txtSolution.Text = problemInfo.Solver.Solve();
+                            txtSolution.SelectionStart = txtSolution.Text.Length;
+                            cmbProblems.Enabled = true;
+                        };
+                        Invoke(a);
+                    }).Start();
                 }
             }
         }

@@ -49,5 +49,11 @@ How many circular primes are there below one million?";
         public override int ProblemNumber {
             get { return 35; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

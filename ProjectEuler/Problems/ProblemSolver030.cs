@@ -38,5 +38,11 @@ Find the sum of all the numbers that can be written as the sum of fifth powers o
         public override int ProblemNumber {
             get { return 30; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

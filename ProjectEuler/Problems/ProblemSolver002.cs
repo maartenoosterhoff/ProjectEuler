@@ -25,5 +25,11 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
         public override int ProblemNumber {
             get { return 2; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

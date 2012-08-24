@@ -32,5 +32,11 @@ Find the largest palindrome made from the product of two 3-digit numbers.";
         public override int ProblemNumber {
             get { return 4; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

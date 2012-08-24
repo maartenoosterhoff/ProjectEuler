@@ -26,5 +26,11 @@ What is the largest prime factor of the number 600851475143 ?";
         public override int ProblemNumber {
             get { return 3; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

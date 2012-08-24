@@ -47,5 +47,11 @@ NOTE: Once the chain starts the terms are allowed to go above one million.";
         public override int ProblemNumber {
             get { return 14; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

@@ -225,5 +225,11 @@ namespace ProjectEuler.Problems {
         public override int ProblemNumber {
             get { return 13; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

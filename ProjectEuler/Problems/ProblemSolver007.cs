@@ -22,5 +22,11 @@ What is the 10 001st prime number?";
         public override int ProblemNumber {
             get { return 7; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

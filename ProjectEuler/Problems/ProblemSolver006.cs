@@ -35,5 +35,11 @@ Find the difference between the sum of the squares of the first one hundred natu
         public override int ProblemNumber {
             get { return 6; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

@@ -157,5 +157,11 @@ What is the greatest product of four adjacent numbers in any direction (up, down
         public override int ProblemNumber {
             get { return 11; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }

@@ -22,5 +22,11 @@ Find the sum of all the multiples of 3 or 5 below 1000.";
         public override int ProblemNumber {
             get { return 1; }
         }
+
+        public override SolvedState SolvedState {
+            get {
+                return SolvedState.Solved;
+            }
+        }
     }
 }
