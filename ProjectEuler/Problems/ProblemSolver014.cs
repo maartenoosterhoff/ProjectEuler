@@ -1,26 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
-
-namespace ProjectEuler.Problems {
-    class ProblemSolver014 : ProblemSolverBase {
-        protected override string GetSolution() {
+﻿namespace ProjectEuler.Problems
+{
+    internal class ProblemSolver014 : ProblemSolverBase
+    {
+        protected override string GetSolution()
+        {
             long valueWithMax = -1;
             long max = -1;
-            for (long v = 1; v < 1000000; v++) {
+            for (long v = 1; v < 1000000; v++)
+            {
                 var value = v;
                 var counter = 1;
-                while (value != 1) {
-                    if (value % 2 == 0) {
+                while (value != 1)
+                {
+                    if (value % 2 == 0)
+                    {
                         value = value / 2;
-                    } else {
+                    }
+                    else
+                    {
                         value = 3 * value + 1;
                     }
                     counter++;
                 }
-                if (counter > max) {
+                if (counter > max)
+                {
                     valueWithMax = v;
                     max = counter;
                 }
@@ -28,7 +31,8 @@ namespace ProjectEuler.Problems {
             return valueWithMax.ToString();
         }
 
-        protected override string GetProblemDescription() {
+        protected override string GetProblemDescription()
+        {
             return @"The following iterative sequence is defined for the set of positive integers:
 
 n -> n/2 (n is even)
@@ -44,14 +48,7 @@ Which starting number, under one million, produces the longest chain?
 NOTE: Once the chain starts the terms are allowed to go above one million.";
         }
 
-        public override int ProblemNumber {
-            get { return 14; }
-        }
-
-        public override SolvedState SolvedState {
-            get {
-                return SolvedState.Solved;
-            }
-        }
+        public override int ProblemNumber => 14;
+        public override SolvedState SolvedState => SolvedState.Solved;
     }
 }

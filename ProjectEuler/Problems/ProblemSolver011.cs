@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace ProjectEuler.Problems {
-    class ProblemSolver011 : ProblemSolverBase {
-        protected override string GetSolution() {
+namespace ProjectEuler.Problems
+{
+    internal class ProblemSolver011 : ProblemSolverBase
+    {
+        protected override string GetSolution()
+        {
             LoadData();
-            string solution = "Coordinaties: " + string.Join(", ", MaxCoor.Select(c => string.Format("({0}, {1})", c.X, c.Y)).ToArray()) + Environment.NewLine;
-            solution += string.Format("Product of values: {0}", Max);
+            var solution = "Coordinaties: " + string.Join(", ", _maxCoor.Select(c => $"({c.X}, {c.Y})").ToArray()) + Environment.NewLine;
+            solution += $"Product of values: {_max}";
             return solution;
         }
 
         int[,] _data;
-        private int Max = 0;
-        private List<Coordinate> MaxCoor = new List<Coordinate>();
+        private int _max;
+        private readonly List<Coordinate> _maxCoor = new List<Coordinate>();
 
-        private void LoadData() {
-            string[] data = new string[20];
+        private void LoadData()
+        {
+            var data = new string[20];
             data[0] = "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08";
             data[1] = "49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00";
             data[2] = "81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65";
@@ -39,22 +42,29 @@ namespace ProjectEuler.Problems {
             data[18] = "20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54";
             data[19] = "01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48";
             _data = new int[20, 20];
-            for (int i = 0; i < 20; i++) {
-                string[] sd = data[i].Split(' ');
-                if (sd.Length == 20) {
-                    for (int j = 0; j < 20; j++) {
+            for (var i = 0; i < 20; i++)
+            {
+                var sd = data[i].Split(' ');
+                if (sd.Length == 20)
+                {
+                    for (var j = 0; j < 20; j++)
+                    {
                         _data[i, j] = int.Parse(sd[j]);
                     }
-                } else {
+                }
+                else
+                {
                     throw new Exception();
                 }
             }
 
-            Stack<Coordinate> coordinates = new Stack<Coordinate>();
-            int length = 20;
-            for (int x = 0; x < length; x++) {
-                for (int y = 0; y < length; y++) {
-                    Coordinate firstCoordinate = new Coordinate() { X = x, Y = y };
+            var coordinates = new Stack<Coordinate>();
+            const int length = 20;
+            for (var x = 0; x < length; x++)
+            {
+                for (var y = 0; y < length; y++)
+                {
+                    var firstCoordinate = new Coordinate(x, y);
                     coordinates.Push(firstCoordinate);
                     Fill(firstCoordinate, coordinates, 1, 0);
                     Fill(firstCoordinate, coordinates, 0, 1);
@@ -63,19 +73,24 @@ namespace ProjectEuler.Problems {
                     coordinates.Pop();
                 }
             }
-            Console.WriteLine(Max);
-            Console.WriteLine(string.Join(", ", MaxCoor.Select(c => string.Format("({0}, {1})", c.X, c.Y)).ToArray()));
-            Console.WriteLine(string.Join(" + ", MaxCoor.Select(c => _data[c.X, c.Y].ToString()).ToArray()));
+            Console.WriteLine(_max);
+            Console.WriteLine(string.Join(", ", _maxCoor.Select(c => $"({c.X}, {c.Y})").ToArray()));
+            Console.WriteLine(string.Join(" + ", _maxCoor.Select(c => _data[c.X, c.Y].ToString()).ToArray()));
         }
 
-        private void Fill(Coordinate lastCoordinate, Stack<Coordinate> coordinates, int deltaRight, int deltaDown) {
-            if (coordinates.Count == 4) {
+        private void Fill(Coordinate lastCoordinate, Stack<Coordinate> coordinates, int deltaRight, int deltaDown)
+        {
+            if (coordinates.Count == 4)
+            {
                 CheckMax(coordinates);
-            } else {
-                int x = lastCoordinate.X;
-                int y = lastCoordinate.Y;
-                Coordinate newC = new Coordinate() { X = x + deltaRight, Y = y + deltaDown };
-                if (newC.IsValid) {// && !coordinates.Contains(newC)) {
+            }
+            else
+            {
+                var x = lastCoordinate.X;
+                var y = lastCoordinate.Y;
+                var newC = new Coordinate(x + deltaRight, y + deltaDown);
+                if (newC.IsValid)
+                {// && !coordinates.Contains(newC)) {
                     coordinates.Push(newC);
                     Fill(newC, coordinates, deltaRight, deltaDown);
                     coordinates.Pop();
@@ -85,48 +100,56 @@ namespace ProjectEuler.Problems {
 
 
 
-        private void CheckMax(Stack<Coordinate> coordinates) {
-            int max = 1;
+        private void CheckMax(Stack<Coordinate> coordinates)
+        {
+            var max = 1;
             var values = coordinates.Select(c => _data[c.X, c.Y]);
             values.ToList().ForEach(i => max *= i);
-            if (max > Max) {
-                Max = max;
-                MaxCoor.Clear();
-                MaxCoor.AddRange(coordinates.Reverse());
+            if (max > _max)
+            {
+                _max = max;
+                _maxCoor.Clear();
+                _maxCoor.AddRange(coordinates.Reverse());
             }
         }
 
-        private class Coordinate : IComparable {
-            public int X { get; set; }
-            public int Y { get; set; }
+        private class Coordinate : IComparable
+        {
+            public Coordinate(int x, int y)
+            {
+                X = x;
+                Y = y;
+            }
+
+            public int X { get; }
+            public int Y { get; }
 
 
-            public int CompareTo(object obj) {
+            public int CompareTo(object obj)
+            {
                 if (!(obj is Coordinate))
                     return -1;
-                Coordinate c = obj as Coordinate;
-                int compareTo = this.X.CompareTo(c.X);
+                var c = (Coordinate)obj;
+                var compareTo = X.CompareTo(c.X);
                 if (compareTo == 0)
-                    compareTo = this.Y.CompareTo(c.Y);
+                    compareTo = Y.CompareTo(c.Y);
                 return compareTo;
             }
-            public override int GetHashCode() {
+            public override int GetHashCode()
+            {
                 return X.GetHashCode() * Y.GetHashCode();
             }
 
-            public override bool Equals(object obj) {
+            public override bool Equals(object obj)
+            {
                 return CompareTo(obj) == 0;
             }
-            public bool IsValid {
-                get {
-                    if (X < 0 || Y < 0 || X > 19 || Y > 19)
-                        return false;
-                    return true;
-                }
-            }
+
+            public bool IsValid => X >= 0 && Y >= 0 && X <= 19 && Y <= 19;
         }
 
-        protected override string GetProblemDescription() {
+        protected override string GetProblemDescription()
+        {
             return @"In the 20x20 grid below, four numbers along a diagonal line have been marked in red.
 
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -154,14 +177,7 @@ The product of these numbers is 26 x 63 x 78 x 14 = 1788696.
 What is the greatest product of four adjacent numbers in any direction (up, down, left, right, or diagonally) in the 20x20 grid?";
         }
 
-        public override int ProblemNumber {
-            get { return 11; }
-        }
-
-        public override SolvedState SolvedState {
-            get {
-                return SolvedState.Solved;
-            }
-        }
+        public override int ProblemNumber => 11;
+        public override SolvedState SolvedState => SolvedState.Solved;
     }
 }

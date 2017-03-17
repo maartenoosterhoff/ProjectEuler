@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Numerics;
 
-namespace ProjectEuler.Problems {
-    class ProblemSolver013 : ProblemSolverBase {
-        protected override string GetSolution() {
-            BigInteger sum = new BigInteger(0);
-            foreach (var number in _number) {
-                sum = sum + BigInteger.Parse(number);
-            }
+namespace ProjectEuler.Problems
+{
+    internal class ProblemSolver013 : ProblemSolverBase
+    {
+        protected override string GetSolution()
+        {
+            var sum = new BigInteger(0);
+            sum = _number.Aggregate(sum, (current, number) => current + BigInteger.Parse(number));
             return sum.ToString().Substring(0, 10);
         }
 
-        private string[] _number = new string[100] {
+        private readonly string[] _number = {
 "37107287533902102798797998220837590246510135740250",
 "46376937677490009712648124896970078050417018260538",
 "74324986199524741059474233309513058123726617309629",
@@ -117,7 +115,8 @@ namespace ProjectEuler.Problems {
 "53503534226472524250874054075591789781264330331690"
     };
 
-        protected override string GetProblemDescription() {
+        protected override string GetProblemDescription()
+        {
             return @"Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
 
 37107287533902102798797998220837590246510135740250
@@ -222,14 +221,7 @@ namespace ProjectEuler.Problems {
 53503534226472524250874054075591789781264330331690";
         }
 
-        public override int ProblemNumber {
-            get { return 13; }
-        }
-
-        public override SolvedState SolvedState {
-            get {
-                return SolvedState.Solved;
-            }
-        }
+        public override int ProblemNumber => 13;
+        public override SolvedState SolvedState => SolvedState.Solved;
     }
 }
