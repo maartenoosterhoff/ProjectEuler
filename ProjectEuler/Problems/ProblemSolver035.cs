@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProjectEuler.Problems
@@ -16,17 +17,9 @@ namespace ProjectEuler.Problems
                 var prime = primes[p];
                 if (Rotate(prime).All(i => primes.Contains(i)))
                 {
-                    lock (Lock)
-                    {
-                        count++;
-                    }
+                    Interlocked.Increment(ref count);
                 }
             });
-            //foreach (var prime in primes) {
-            //    if (Rotate(prime).All(i => primes.Contains(i))) {
-            //        count++;
-            //    }
-            //}
 
             return count.ToString();
         }
