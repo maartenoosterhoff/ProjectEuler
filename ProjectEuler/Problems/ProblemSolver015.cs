@@ -5,8 +5,8 @@
         protected override string GetSolution()
         {
 
-            const int SIZE = 3;
-            int[,] grid = new int[SIZE + 1, SIZE + 1];
+            const int SIZE = 20;
+            long[,] grid = new long[SIZE + 1, SIZE + 1];
 
             for (int x = 0; x < SIZE + 1; x++)
             {
@@ -34,18 +34,6 @@
             var result = grid[SIZE, SIZE].ToString();
 
             return result;
-
-
-            //long dimension = 20;
-
-            //var current = dimension + 1;
-            //long solution = 1;
-            //while (current > 1) {
-            //    solution *= current;
-            //    current--;
-            //}
-            //return solution.ToString();
-            return "Unsolved";
         }
 
         protected override string GetProblemDescription()
@@ -58,5 +46,6 @@ How many routes are there through a 20x20 grid?";
         }
 
         public override int ProblemNumber => 15;
+        public override SolvedState SolvedState => SolvedState.Solved;
     }
 }
