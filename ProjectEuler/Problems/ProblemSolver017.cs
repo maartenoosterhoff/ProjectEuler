@@ -16,7 +16,7 @@ namespace ProjectEuler.Problems
             return letterCount.ToString();
         }
 
-        private readonly static Dictionary<int, string> _numbers = new Dictionary<int, string>
+        private readonly Dictionary<int, string> _numbers = new Dictionary<int, string>
         {
             { 1, "one" },
             { 2, "two" },
@@ -47,7 +47,7 @@ namespace ProjectEuler.Problems
             { 90, "ninety" },
         };
 
-        private static string GetTextualNumber(int i)
+        private string GetTextualNumber(int i)
         {
             if (_numbers.ContainsKey(i))
                 return _numbers[i];
