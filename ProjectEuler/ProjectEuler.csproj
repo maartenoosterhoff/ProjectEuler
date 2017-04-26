@@ -62,6 +62,8 @@
     <Compile Include="Problems\ProblemSolver007.cs" />
     <Compile Include="Problems\ProblemSolver006.cs" />
     <Compile Include="Problems\ProblemSolver004.cs" />
+    <Compile Include="Problems\ProblemSolver020.cs" />
+    <Compile Include="Problems\ProblemSolver019.cs" />
     <Compile Include="Problems\ProblemSolver018.cs" />
     <Compile Include="Problems\ProblemSolver035.cs" />
     <Compile Include="Problems\ProblemSolver036.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Problems\ProblemSolver001.cs" />
     <Compile Include="Problems\ProblemSolver003.cs" />
     <Compile Include="Problems\ProblemSolver005.cs" />
+    <Compile Include="Problems\ProblemSolver017.cs" />
     <Compile Include="Problems\ProblemSolverBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
