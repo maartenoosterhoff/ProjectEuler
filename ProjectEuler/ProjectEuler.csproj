@@ -66,6 +66,7 @@
     <Compile Include="Problems\ProblemSolver020.cs" />
     <Compile Include="Problems\ProblemSolver019.cs" />
     <Compile Include="Problems\ProblemSolver018.cs" />
+    <Compile Include="Problems\ProblemSolver022.cs" />
     <Compile Include="Problems\ProblemSolver035.cs" />
     <Compile Include="Problems\ProblemSolver036.cs" />
     <Compile Include="Problems\ProblemSolver037.cs" />
@@ -105,6 +106,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="p022_names.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
