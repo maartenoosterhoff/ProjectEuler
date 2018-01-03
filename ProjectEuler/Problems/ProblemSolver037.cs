@@ -13,6 +13,7 @@ namespace ProjectEuler.Problems
             var truncatablePrimes = primes
                 .Where(x => x > 7)
                 .Where(x => IsTruncatable(x, primes))
+                .Take(11)
                 .ToArray();
 
 
@@ -33,7 +34,8 @@ namespace ProjectEuler.Problems
                 )
                 .SelectMany(x => new[] { x.left, x.right })
                 .ToArray();
-
+            if (truncated.Any(x => x != 2 && x % 2 == 0))
+                return false;
             return truncated.All(primes.Contains);
         }
 
@@ -76,5 +78,6 @@ NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.";
         }
 
         public override int ProblemNumber => 37;
+        public override SolvedState SolvedState => SolvedState.Solved;
     }
 }
