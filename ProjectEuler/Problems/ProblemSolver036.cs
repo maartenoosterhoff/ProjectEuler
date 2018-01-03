@@ -34,5 +34,6 @@ Find the sum of all numbers, less than one million, which are palindromic in bas
         }
 
         public override int ProblemNumber => 36;
+        public override SolvedState SolvedState => SolvedState.Solved;
     }
 }

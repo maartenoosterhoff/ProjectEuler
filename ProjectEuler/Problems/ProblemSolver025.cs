@@ -9,9 +9,10 @@ namespace ProjectEuler.Problems
         protected override string GetSolution()
         {
 
-            var fibs = new List<BigInteger>();
-            fibs.Add(new BigInteger(1));
-            fibs.Add(new BigInteger(1));
+            var fibs = new List<BigInteger>
+            {
+                new BigInteger(1), new BigInteger(1)
+            };
             while (fibs.Last().ToString().Length < 1000)
             {
                 fibs.Add(fibs[fibs.Count - 1] + fibs[fibs.Count - 2]);
@@ -45,6 +46,6 @@ What is the index of the first term in the Fibonacci sequence to contain 1000 di
         }
 
         public override int ProblemNumber => 25;
-        public override SolvedState SolvedState => SolvedState.Unsolved;
+        public override SolvedState SolvedState => SolvedState.Solved;
     }
 }
